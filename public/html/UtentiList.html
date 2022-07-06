@@ -1,0 +1,75 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	UtentiList
+	
+	Links : 	UtentiEdit
+					/utentis/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="UtentiListController">
+	
+	<h1>UtentiList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Indirizzo">Indirizzo</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.Indirizzo" class="form-control" name="Indirizzo" id="Indirizzo" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Nome">Nome</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.Nome" class="form-control" name="Nome" id="Nome" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Note">Note</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.Note" class="form-control" name="Note" id="Note" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>Indirizzo</th>
+				<th>Nome</th>
+				<th>Note</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  Indirizzo:search.Indirizzo,  Nome:search.Nome,  Note:search.Note,  }">
+				<td ng-bind="item._id" ng-link="/utentis/{{item._id}}"></td>
+				<td ng-bind="item.Indirizzo"></td>
+				<td ng-bind="item.Nome"></td>
+				<td ng-bind="item.Note"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   Indirizzo:search.Indirizzo,  Nome:search.Nome,  Note:search.Note,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/utentis/new">New</button>
+	
+</div>

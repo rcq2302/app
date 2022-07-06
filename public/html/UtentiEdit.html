@@ -1,0 +1,88 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	UtentiEdit
+	
+	Links : 	
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="UtentiEditController">
+	
+	<h1>
+		<span>UtentiEdit</span>
+		{{obj.name}}
+	</h1>
+	
+	
+	
+	<div class="well">
+		<form name="skaffolderForm" class="container-fluid mt-20">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Indirizzo">Indirizzo</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.Indirizzo.$invalid }">
+					<input  type="text" ng-model="obj.Indirizzo"  class="form-control" name="Indirizzo" id="Indirizzo" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Nome">Nome</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.Nome.$invalid }">
+					<input  type="text" ng-model="obj.Nome"  class="form-control" name="Nome" id="Nome" required>
+		 			<p ng-show="skaffolderForm.Nome.$invalid" class="help-block">Value is required</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Note">Note</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : skaffolderForm.Note.$invalid }">
+					<input  type="text" ng-model="obj.Note"  class="form-control" name="Note" id="Note" >
+		 			
+				</div>
+			</div>
+			
+			
+			
+			
+			
+	
+			<div class="row mt-40">
+				<button ng-if="obj._id" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">
+					<i class="glyphicon glyphicon-trash"></i> Remove
+				</button>
+				
+				<button type="submit" class="btn btn-primary pull-right" ng-disabled="skaffolderForm.$invalid" ng-click="save()">Save</button>
+			    <button class="btn btn-link pull-right" ng-link="/utentis/">Back to List</button>
+			</div>
+			<div class="clearfix"></div>
+		</form>
+		
+	</div>
+	
+	
+	<!-- MODAL REMOVE -->
+	<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Delete item</h4>
+				</div>
+				<div class="modal-body">
+					Do you want confirm delete? 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove()">YES</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
